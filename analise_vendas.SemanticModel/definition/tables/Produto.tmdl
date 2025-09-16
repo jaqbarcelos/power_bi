@@ -1,0 +1,61 @@
+table Produto
+	lineageTag: efa77bce-b276-4b9e-97c2-c861e4e4f543
+
+	column 'Cod Produto'
+		dataType: int64
+		formatString: 0
+		lineageTag: e2e75d06-602d-4136-9376-bcf6478775a2
+		summarizeBy: none
+		sourceColumn: Cod Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo Produto'
+		dataType: string
+		lineageTag: 80931388-37a4-40db-8494-052e109aec20
+		summarizeBy: none
+		sourceColumn: Grupo Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linha Produto'
+		dataType: string
+		lineageTag: 17284459-42f8-427a-8b74-a7aadde7ab18
+		summarizeBy: none
+		sourceColumn: Linha Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fornecedor
+		dataType: string
+		lineageTag: 8627ab27-3099-4294-b606-4136442afa9a
+		summarizeBy: none
+		sourceColumn: Fornecedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustoUnitario
+		dataType: double
+		lineageTag: e1f2e0e0-5bc5-45a8-b962-f7c4448d4273
+		summarizeBy: none
+		sourceColumn: CustoUnitario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Produto = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\Jaqueline\Downloads\CadastroProdutos.xlsx"), null, true),
+				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Cod Produto", Int64.Type}, {"Grupo Produto", type text}, {"Linha Produto", type text}, {"Fornecedor", type text}, {"CustoUnitario", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

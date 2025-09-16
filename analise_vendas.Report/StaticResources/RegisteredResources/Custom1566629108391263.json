@@ -1,0 +1,53 @@
+{
+  "name": "Custom",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "transparency": 100
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 100
+          }
+        ]
+      }
+    }
+  },
+  "textClasses": {
+    "label": {
+      "color": "#FFFFFF"
+    },
+    "title": {
+      "color": "#FFFFFF",
+      "fontFace": "'Segoe UI Bold', wf_segoe-ui_bold, helvetica, arial, sans-serif",
+      "fontSize": 10
+    },
+    "callout": {
+      "color": "#FFFFFF"
+    }
+  },
+  "foreground": "#000000",
+  "foregroundNeutralSecondary": "#FFFFFF",
+  "dataColors": [
+    "#0EBBDA",
+    "#12239E",
+    "#E66C37",
+    "#6B007B",
+    "#E044A7",
+    "#744EC2",
+    "#D9B300",
+    "#D64550"
+  ]
+}
